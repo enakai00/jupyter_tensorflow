@@ -14,4 +14,5 @@ unset HASH
 
 mkdir -p $HOME/notebook
 cd $HOME/notebook
+ipython -c '%matplotlib' # build font cache for matplotlib
 jupyter notebook
