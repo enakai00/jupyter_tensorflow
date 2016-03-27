@@ -5,12 +5,13 @@ if [ "${PASSWORD-undef}" = "undef" ]; then
   export PASSWORD='passw0rd'
 fi
 
-if ! grep -E '^c.NotebookApp.password =' /root/.jupyter/jupyter_notebook_config.py; then
+if ! grep -E '^c.NotebookApp.password =' $HOME/.jupyter/jupyter_notebook_config.py; then
   HASH=$(python -c "from IPython.lib import passwd; print(passwd('${PASSWORD}'))")
-  echo "c.NotebookApp.password = u'${HASH}'" >>/root/.jupyter/jupyter_notebook_config.py
+  echo "c.NotebookApp.password = u'${HASH}'" >>$HOME/.jupyter/jupyter_notebook_config.py
 fi
 unset PASSWORD
 unset HASH
 
-cd $HOME
+mkdir -p $HOME/notebook
+cd $HOME/notebook
 jupyter notebook
