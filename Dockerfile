@@ -3,10 +3,11 @@ MAINTAINER Etsuji Nakai
 RUN yum -y update
 RUN yum -y groupinstall "Development Tools"
 RUN yum -y install epel-release && \
-    yum -y install python-devel python-pip lapack-devel freetype-devel libpng-devel
+    yum -y install python-devel python-pip && \
+           lapack-devel freetype-devel libpng-devel libjpeg-turbo-devel
 RUN pip install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.7.1-cp27-none-linux_x86_64.whl
 RUN pip install pandas scipy jupyter && \
-    pip install scikit-learn matplotlib
+    pip install scikit-learn matplotlib Pillow
 
 RUN jupyter notebook --generate-config
 RUN echo "c.NotebookApp.ip = '*'" >>/root/.jupyter/jupyter_notebook_config.py && \
