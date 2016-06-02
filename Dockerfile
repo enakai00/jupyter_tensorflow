@@ -10,7 +10,7 @@ RUN pip install pandas scipy jupyter && \
     pip install scikit-learn matplotlib Pillow && \
     pip install google-api-python-client
 
-RUN jupyter notebook --generate-config &&
+RUN jupyter notebook --generate-config && \
     ipython profile create
 RUN echo "c.NotebookApp.ip = '*'" >>/root/.jupyter/jupyter_notebook_config.py && \
     echo "c.NotebookApp.open_browser = False" >>/root/.jupyter/jupyter_notebook_config.py && \
