@@ -9,6 +9,11 @@ RUN pip install https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0
 RUN pip install pandas scipy jupyter && \
     pip install scikit-learn matplotlib Pillow && \
     pip install google-api-python-client
+RUN cd /etc/yum.repos.d && \
+    curl -LO http://www.graphviz.org/graphviz-rhel.repo && \
+    cd /tmp && \
+    curl -LO http://www.graphviz.org/pub/graphviz/stable/redhat/el7Server/x86_64/os/gts-0.7.6-21.20111025.el7.x86_64.rpm && \
+    yum -y install graphviz graphviz-gd gts-0.7.6-21.20111025.el7.x86_64.rpm
 
 RUN jupyter notebook --generate-config && \
     ipython profile create
